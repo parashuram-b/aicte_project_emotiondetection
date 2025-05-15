@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emotion Recognition App</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f3f4f6, #e5e7eb);
+      color: #111827;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    video, canvas {
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      margin-top: 20px;
+    }
+
+    #emotion {
+      font-size: 24px;
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+      color: #1f2937;
+    }
+
+    #supportMessage {
+      background: #ffffff;
+      border-left: 5px solid #3b82f6;
+      padding: 15px 20px;
+      margin-top: 10px;
+      border-radius: 8px;
+      width: 320px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      font-size: 16px;
+    }
+
+    #accuracyCheck {
+      margin-top: 30px;
+      background: #f9fafb;
+      padding: 20px;
+      border-radius: 10px;
+      width: 320px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+
+    select, button {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      width: 100%;
+    }
+
+    button {
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #2563eb;
+    }
+
+    #accuracyResult {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #4b5563;
+    }
+  </style>
+
+  <!-- Load face-api.js locally and your main script -->
+  <script defer src="face-api.min.js"></script>
+  <script defer src="main.js"></script>
+</head>
+
+<body>
+  <h1>Real-Time Emotion Recognition</h1>
+  <p>Please allow access to your webcam and microphone.</p>
+
+  <video id="video" width="320" height="240" autoplay muted></video>
+  <canvas id="overlay" width="320" height="240"></canvas>
+
+  <div id="emotion">Detected Emotion: N/A</div>
+  <div id="supportMessage"></div>
+
+  <div id="accuracyCheck">
+    <p>What emotion are you actually feeling?</p>
+    <select id="actualEmotion">
+      <option value="happy">Happy</option>
+      <option value="angry">Angry</option>
+      <option value="calm">Calm</option>
+      <option value="neutral">Neutral</option>
+    </select>
+    <button onclick="checkAccuracy()">Compare</button>
+    <p id="accuracyResult"></p>
+  </div>
+</body>
+</html>
